@@ -1,3 +1,5 @@
+'use script';
+
 const mongoose = require('mongoose');
 
 // import database connection
