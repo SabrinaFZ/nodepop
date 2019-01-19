@@ -23,7 +23,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 // connect to database
 require('./lib/connectMongoose');
 
+// set default local variables
+app.use((req, res, next) => {
+  res.locals.title = 'Nodepop';
+  res.locals.data = [];
+  next();
+});
+
+// middleware main site
 app.use('/', indexRouter);
+
+// middleware nodepop API
+app.use('/apiv1/ads', require('./routes/apiv1/apiv1'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

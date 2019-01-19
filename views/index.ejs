@@ -6,6 +6,29 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <% if(data && data.length > 0){ %>
+      <% data.forEach(function(value, i) { %>
+      <div>
+        <h2><strong>Ad #
+          <%= i+1 %>
+          </strong>
+        </h2>
+        <p>
+          Product: <%= value.name %>
+        </p>
+        <p>
+          <%= value.sell ? 'To Sell' : 'To Search' %>
+        </p>
+        <p>Price: <%= value.price %>$</p>
+        <p> Tags:
+          <% value.tags.forEach(function(value){ %>
+          <span>
+            <%=value %> </span>
+          <% }) %>
+        </p>
+        <img src="./images/<%= value.picture %>" alt="<%= value.picture %>">
+      </div>
+      <% }) %>
+    <% } %>
   </body>
 </html>
