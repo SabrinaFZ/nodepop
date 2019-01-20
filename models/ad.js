@@ -12,9 +12,11 @@ const adSchema = new mongoose.Schema({
 });
 
 // add function to model to filter
-adSchema.statics.filterBy = function(filter, sortCondition){
+adSchema.statics.filterBy = function (filter, sortCondition, limit, skip){
     let query = Ad.find(filter);
     query.sort(sortCondition);
+    query.limit(limit);
+    query.skip(skip);
     return query;
 }
 

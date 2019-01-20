@@ -20,6 +20,8 @@ router.get('/ads', async (req, res, next) => {
     let sell = req.query.sell;
     let price = req.query.price;
     let name = req.query.name;
+    let limit = parseInt(req.query.limit);
+    let skip = parseInt(req.query.skip);
 
     // create object to save schema properties to filter
     const filter = {};
@@ -42,7 +44,7 @@ router.get('/ads', async (req, res, next) => {
     }
 
     // execute filterBy
-    let result = await Ad.filterBy(filter, sort);
+    let result = await Ad.filterBy(filter, sort, limit, skip);
 
     console.log(result);
 
