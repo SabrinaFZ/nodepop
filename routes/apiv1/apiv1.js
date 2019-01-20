@@ -11,12 +11,17 @@ router.get('/', async(req, res, next) => {
         // set query params
         let tags = req.query.tags;
         let sort = req.query.sort;
+        let sell = req.query.sell;
 
         // create object to save schema properties to filter
         const filter = {};
 
         if(tags){
             filter.tags = tags;
+        }
+
+        if(sell){
+            filter.sell = sell;
         }
 
         // execute filterBy
