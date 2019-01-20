@@ -18,6 +18,12 @@ adSchema.statics.filterBy = function(filter, sortCondition){
     return query;
 }
 
+adSchema.statics.getTags = function(){
+    let query = Ad.find();
+    query.select('tags');
+    return query;
+}
+
 // define ad model
 const Ad = mongoose.model('Ad', adSchema);
 

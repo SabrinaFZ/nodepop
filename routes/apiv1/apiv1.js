@@ -5,8 +5,15 @@ const router = express.Router();
 
 const Ad = require('./../../models/ad');
 
+router.get('/', async (req, res, next) => {
+    res.json({
+        success: true,
+        result: []
+    });
+});
+
 // Get all ads (without filter)
-router.get('/', async(req, res, next) => {
+router.get('/ads', async(req, res, next) => {
     try{
         // set query params
         let tags = req.query.tags;
@@ -52,6 +59,22 @@ router.get('/', async(req, res, next) => {
     } 
 });
 
+router.get('/tags', async(req, res, next) => {
+    try{
+        let result = await Ad.getTags();
+        let tags = getTags(result);
+        
+        res.json({
+            success: true,
+            result: tags
+        });
+
+    } catch (err) {
+        console.log('Ups, an error', err);
+        process.exit(1);
+    } 
+});
+
 // function to format price
 function filterPrice(price){
     if (price.includes('-')) {
@@ -76,6 +99,21 @@ function filterPrice(price){
     } else {
         return parseInt(price);
     }
+}
+
+function getTags(list){
+    let tags = [];
+    list.forEach((value) => {
+        let tagsValue = value.tags;
+
+        tagsValue.forEach((tag) => {
+            if (!tags.includes(tag)) {
+                tags.push(tag);
+            }
+        });
+    });
+
+    return tags;
 }
 
 

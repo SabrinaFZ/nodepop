@@ -26,7 +26,8 @@ require('./lib/connectMongoose');
 // set default local variables
 app.use((req, res, next) => {
   res.locals.title = 'Nodepop';
-  res.locals.data = [];
+  res.locals.articles = [];
+  res.locals.tags = [];
   next();
 });
 
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 
 // middleware nodepop API
-app.use('/apiv1/ads', require('./routes/apiv1/apiv1'));
+app.use('/apiv1', require('./routes/apiv1/apiv1'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

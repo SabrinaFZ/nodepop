@@ -47,7 +47,21 @@ router.get('/ads', async (req, res, next) => {
     console.log(result);
 
     // send back response
-    res.locals.data = result;
+    res.locals.articles = result;
+    res.render('index');
+
+  } catch (err) {
+    console.log('Ups, an error', err);
+    process.exit(1);
+  }
+});
+
+router.get('/tags', async (req, res, next) => {
+  try {
+    let result = await Ad.getTags();
+    let tags = getTags(result);
+
+    res.locals.tags = tags;
     res.render('index');
 
   } catch (err) {
@@ -83,5 +97,19 @@ function filterPrice(price) {
   }
 }
 
+function getTags(list) {
+  let tags = [];
+  list.forEach((value) => {
+    let tagsValue = value.tags;
+
+    tagsValue.forEach((tag) => {
+      if (!tags.includes(tag)) {
+        tags.push(tag);
+      }
+    });
+  });
+
+  return tags;
+}
 
 module.exports = router;

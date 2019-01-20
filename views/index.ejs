@@ -6,8 +6,8 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <% if(data && data.length > 0){ %>
-      <% data.forEach(function(value, i) { %>
+    <% if(articles && articles.length > 0){ %>
+      <% articles.forEach(function(value, i) { %>
       <div>
         <h2><strong>Ad #
           <%= i+1 %>
@@ -30,5 +30,15 @@
       </div>
       <% }) %>
     <% } %>
+    <div>
+      <h2><strong>Tags</strong></h2>
+      <% if(tags && tags.length > 0){ %>
+        <ul>
+        <% for(let i=0; i < tags.length; i++) { %>
+          <li><%= tags[i] %> </li>
+        <% } %>
+        </ul>
+      <% } %>
+    </div>
   </body>
 </html>
