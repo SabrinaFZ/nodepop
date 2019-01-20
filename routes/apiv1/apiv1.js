@@ -59,6 +59,27 @@ router.get('/ads', async(req, res, next) => {
     } 
 });
 
+// Create new ad
+router.post('/ads', async(req, res, next) => {
+    try {
+        let body = req.body;
+        let ad =  new Ad(body);
+        let result = await ad.save();
+
+        console.log(result);
+
+        res.json({
+            success: true,
+            result: result
+        });
+
+    } catch (err) {
+        console.log('Ups, an error', err);
+        process.exit(1);
+    } 
+});
+
+// Get all tags
 router.get('/tags', async(req, res, next) => {
     try{
         let result = await Ad.getTags();
