@@ -13,6 +13,7 @@ router.get('/', async(req, res, next) => {
         let sort = req.query.sort;
         let sell = req.query.sell;
         let price = req.query.price;
+        let name = req.query.name;
 
         // create object to save schema properties to filter
         const filter = {};
@@ -27,6 +28,11 @@ router.get('/', async(req, res, next) => {
 
         if (price) {
             filter.price = filterPrice(price);
+        }
+
+        if(name){
+            filter.name = new RegExp('^' + req.query.name, 'i');
+            console.log(filter.name)
         }
 
         // execute filterBy
