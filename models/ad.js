@@ -11,6 +11,13 @@ const adSchema = new mongoose.Schema({
     tags: [String]
 });
 
+// add function to model to filter
+adSchema.statics.filterBy = function(filter, sortCondition){
+    let query = Ad.find(filter);
+    query.sort(sortCondition);
+    return query;
+}
+
 // define ad model
 const Ad = mongoose.model('Ad', adSchema);
 

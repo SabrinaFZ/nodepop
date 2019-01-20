@@ -11,15 +11,32 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+// Get all ads (without filter)
 router.get('/ads', async (req, res, next) => {
   try {
-    let result = await Ad.find();
+    // set query params
+    let tags = req.query.tags;
+    let sort = req.query.sort;
+
+    // create object to save schema properties to filter
+    const filter = {};
+    
+    if (tags) {
+      filter.tags = tags;
+    }
+
+    // execute filterBy
+    let result = await Ad.filterBy(filter, sort);
+
+    console.log(result);
+
+    // send back response
     res.locals.data = result;
     res.render('index');
 
   } catch (err) {
     console.log('Ups, an error', err);
-    process.exit(1);;
+    process.exit(1);
   }
 });
 module.exports = router;
