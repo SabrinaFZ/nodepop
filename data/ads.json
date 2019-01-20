@@ -18,5 +18,24 @@
             "lifestyle",
             "mobile"
         ]
+    },
+    {
+        "name": "Car",
+        "sell": false,
+        "price": 5000.00,
+        "picture": "car.png",
+        "tags": [
+            "lifestyle",
+            "motor"
+        ]
+    },
+    {
+        "name": "Clock",
+        "sell": true,
+        "price": 23.67,
+        "picture": "clock.jpg",
+        "tags": [
+            "lifestyle"
+        ]
     }
 ]
