@@ -22,6 +22,8 @@ $ npm run start
 
 - The api is running in http://localhost:3000/apiv1/
 
+- The app is running in http://localhost:3000/
+
 | Param | Value |
 | ----- | ----- |
 | name | string |
