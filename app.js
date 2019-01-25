@@ -1,3 +1,5 @@
+'use script';
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -18,7 +20,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// connect to database
+require('./lib/connectMongoose');
+
+// set default local variables
+app.use((req, res, next) => {
+  res.locals.title = 'Nodepop';
+  res.locals.articles = [];
+  res.locals.tags = [];
+  next();
+});
+
+// middleware main site
 app.use('/', indexRouter);
+
+// middleware nodepop API
+app.use('/apiv1', require('./routes/apiv1/apiv1'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
