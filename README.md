@@ -62,6 +62,13 @@ $ npm run start
     | tags | work |
     | tags | lifestyle |
     | price | 17.55 |
+   
+## DevOps Module
+
+Exercise 1 - http://ec2-107-22-28-38.compute-1.amazonaws.com/
+* Try with the different endpoints above
+
+Exercise 2 - http://107.22.28.38/
 
 ## Author
 Sabrina Fernandez Zambrano
